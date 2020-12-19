@@ -1,18 +1,10 @@
 <template>
     <div class="panel-block">
-                <form @submit.prevent="addNewSong">
-                    <div class="field has-addons">
-                        <div class="control is-expanded">
-                            <input class="input" type="text" placeholder="Artist" v-model="newArtist">
-                        </div>
-                        <div class="control is-expanded">
-                            <input class="input" type="text" placeholder="title" v-model="newTitle">
-                        </div>
-                        <div class="control">
-                            <button class="button is-info" type="submit">Add</button>
-                        </div>
-                    </div>
-                </form>
+        <form @submit.prevent="addNewSong">
+            <input type="text" placeholder="Artist" v-model="newArtist">
+            <input type="text" placeholder="title" v-model="newTitle">
+            <button type="submit">Add</button>
+        </form>
     </div>
 </template>
 
@@ -28,7 +20,7 @@ export default {
     methods: {
         addNewSong() {
             if (this.newArtist && this.newTitle) {
-                this.$emit('addNewSong' , {
+                this.$store.commit('addNewSong' , {
                     artist: this.newArtist,
                     title: this.newTitle
                 });

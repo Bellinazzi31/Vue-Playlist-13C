@@ -20,17 +20,19 @@
 <script>
 export default {
     name: 'Playlist',
-    props: {
-        songs: Array
-    },
+    
     computed: {
+        songs() {
+            return this.$store.state.playlistSongs;
+        },
         songCount() {
             return this.songs.length;
         }
+
     },
     methods: {
         removeFromPlaylist(index) {
-            this.$emit('remove', index);
+            this.$store.commit('removeFromPlaylist', index);
         }
     }
 }

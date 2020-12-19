@@ -25,23 +25,23 @@ import AddSong from './AddSong';
 
 export default {
     name: 'Songlist',
-    props: {
-        songs: Array
-    },
 
     components: { AddSong },
 
     computed: {
+        songs() {
+            return this.$store.state.songs;
+        },
         songCount() {
-            return this.songs.length;
+            return this.$store.getters.songCount;
         }
     },
     methods: {
-        addNewSong(song) {
-            this.$emit('addNewSong', song);
-        },
+        // addNewSong(song) {
+        //     this.$emit('addNewSong', song);
+        // },
         addToPlaylist(index) {
-            this.$emit('add', index);
+            this.$store.commit('addToPlylist', index);
         }
     }
 }
